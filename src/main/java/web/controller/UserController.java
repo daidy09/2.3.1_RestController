@@ -3,7 +3,13 @@ package web.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PatchMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import web.model.User;
 import web.service.UserService;
@@ -19,14 +25,13 @@ public class UserController {
         this.userService = userService;
     }
 
-
     @GetMapping
     public String getUser(Model model) {
         model.addAttribute("userList", userService.getList());
         return "user";
     }
 
-    @GetMapping("/newAddUser")
+    @GetMapping("/AddNewUser")
     public String addNewUser(Model model) {
         User user = new User();
         model.addAttribute("user", user);
@@ -43,16 +48,17 @@ public class UserController {
         userService.deleteUser(id);
         return "redirect:/";
     }
+
     @GetMapping("/editUser/{id}")
     public String editUser (Model model, @PathVariable("id") long id) {
 
         model.addAttribute("user", userService.getUser(id));
         return "user_info";
     }
+
     @PatchMapping("{id}")
     public String userSaveEdit (@PathVariable("id") long id, @ModelAttribute("user") User user) {
         userService.editUser(user);
         return "redirect:/";
     }
-
 }
