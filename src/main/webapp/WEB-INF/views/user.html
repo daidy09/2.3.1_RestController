@@ -16,7 +16,7 @@
             <colgroup>
                 <col span="8" style="background-color: #64d2ed">
             </colgroup>
-            <th>Id</th>
+            <th >Id</th>
             <th>Name</th>
             <th>Lastname</th>
             <th>Age</th>
@@ -27,13 +27,13 @@
             <th>Action</th>
         </tr>
         <tr th:each="user : ${userList}">
-            <td th:utext="${user.getId()}">VALUE</td>
-            <td th:utext="${user.getName()}">VALUE</td>
-            <td th:utext="${user.getLastname()}">VALUE</td>
-            <td th:utext="${user.getAge()}">VALUE</td>
-            <td th:utext="${user.getEmail()}">VALUE</td>
-            <td th:utext="${user.getPassword()}">VALUE</td>
-            <td th:utext="${user.getRoles()}">VALUE</td>
+            <td th:text="${user.getId()}">VALUE</td>
+            <td th:text="${user.getName()}">VALUE</td>
+            <td th:text="${user.getLastname()}">VALUE</td>
+            <td th:text="${user.getAge()}">VALUE</td>
+            <td th:text="${user.getEmail()}">VALUE</td>
+            <td th:text="${user.getPassword()}">VALUE</td>
+            <td th:text="${user.getRoles()}">VALUE</td>
 
             <td>
                 <a th:href="@{/editUser/{id}(id=${user.getId()})}">

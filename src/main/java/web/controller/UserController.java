@@ -33,9 +33,8 @@ public class UserController {
 
     @GetMapping("/AddNewUser")
     public String addNewUser(Model model) {
-        User user = new User();
-        model.addAttribute("user", user);
-        return "user_info";
+        model.addAttribute("user", new User());
+        return "user_new";
     }
 
     @PostMapping
@@ -50,10 +49,10 @@ public class UserController {
     }
 
     @GetMapping("/editUser/{id}")
-    public String editUser (Model model, @PathVariable("id") long id) {
+    public String editUser (@PathVariable("id") long id, Model model) {
 
         model.addAttribute("user", userService.getUser(id));
-        return "user_info";
+        return "user_edit";
     }
 
     @PatchMapping("{id}")
